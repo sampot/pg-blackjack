@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d3b2e" />
+    <title>21點 Blackjack</title>
+    <meta
+      name="description"
+      content="Blackjack（21點）——對莊家要牌／停牌／加倍、籌碼下注、天然 3:2。"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🃏%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>21點</h1>
+      <button id="btn-mute" type="button" class="ghost" aria-label="切換音效">音效開</button>
+    </header>
+
+    <main class="table" aria-label="牌桌">
+      <div class="bank">
+        <span class="stat">籌碼 <b id="bankroll">1000</b></span>
+        <span class="stat">本局 <b id="bet-label">0</b></span>
+        <span class="stat">最高 <b id="peak-label">1000</b></span>
+      </div>
+
+      <section class="hand-zone dealer-zone" aria-label="莊家">
+        <div class="zone-head">
+          <span class="role">莊家</span>
+          <span id="dealer-score" class="score" aria-live="polite"></span>
+        </div>
+        <div id="dealer-cards" class="cards"></div>
+      </section>
+
+      <p id="status" class="status" role="status">選籌碼下注，再按「發牌」。</p>
+
+      <section class="hand-zone player-zone" aria-label="玩家">
+        <div class="zone-head">
+          <span class="role">你</span>
+          <span id="player-score" class="score" aria-live="polite"></span>
+        </div>
+        <div id="player-cards" class="cards"></div>
+      </section>
+
+      <section id="bet-panel" class="bet-panel" aria-label="下注">
+        <div class="chips" role="group" aria-label="籌碼面額">
+          <button type="button" class="chip" data-chip="10">10</button>
+          <button type="button" class="chip" data-chip="25">25</button>
+          <button type="button" class="chip" data-chip="50">50</button>
+          <button type="button" class="chip" data-chip="100">100</button>
+          <button type="button" class="chip" data-chip="250">250</button>
+        </div>
+        <div class="bet-actions">
+          <button id="btn-clear-bet" type="button" class="ctrl">清除</button>
+          <button id="btn-deal" type="button" class="primary">發牌</button>
+        </div>
+      </section>
+
+      <section id="play-panel" class="play-panel hidden" aria-label="出牌">
+        <button id="btn-hit" type="button" class="ctrl">要牌</button>
+        <button id="btn-stand" type="button" class="primary">停牌</button>
+        <button id="btn-double" type="button" class="ctrl">加倍</button>
+      </section>
+
+      <section id="settle-panel" class="settle-panel hidden" aria-label="結算">
+        <button id="btn-next" type="button" class="primary">下一局</button>
+        <button id="btn-reset" type="button" class="ghost">重置籌碼</button>
+      </section>
+
+      <footer class="meta">
+        <span>要牌／停牌／加倍 · 莊家 S17 · 天然黑傑克 3:2 · 純娛樂</span>
+      </footer>
+    </main>
+
+    <div id="broke-panel" class="end-panel hidden" role="dialog" aria-modal="true" aria-labelledby="broke-title">
+      <div class="end-card">
+        <h2 id="broke-title">籌碼用盡</h2>
+        <p>重新開始一輪 1000 籌碼。</p>
+        <button id="btn-broke-reset" type="button" class="primary">再來</button>
+      </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
